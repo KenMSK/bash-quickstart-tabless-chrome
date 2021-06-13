@@ -1,5 +1,5 @@
 # bash-quickstart-tabless-chrome
-Start chrome without tabs with designated URL
+Start chrome without tabs to visit designated URL
 
 If clipboard already contains a valid url, use it directly and exit.
 If not, ask user to input a URL.
