@@ -10,12 +10,15 @@ if [[ ! $addr == http* ]];
 then
   addr="https://$addr"
 fi
-if wget -q "$addr";
+
+if curl --head --silent --fail "$addr" 2> /dev/null;
 then
   echo 'using URL from CLIPBOARD'
   /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app=$addr
   osascript -e 'tell application "Terminal" to close first window' & exit
 fi
+
+echo "..."
 
 #If clipboard does not contain a valid url, let user enter it
 while true
@@ -32,7 +35,7 @@ do
     addr="https://$addr"
     echo $addr
   fi
-  if ! wget -q "$addr";
+  if curl --head --silent --fail "$addr" 2> /dev/null;
     then echo "Address is not valid!? Input again:"
     else /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app=$addr
   fi
